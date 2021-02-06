@@ -7,15 +7,15 @@ class ErrorHandler extends Error {
 }
 
 const handleError = (err, res) => {
-    const { statusCode, message } = err
-
+    let statusCode = err.status || 404
+    let message = err.message || 'Internal Error'
     let errorResponse =  {
-        status: err,
+        status: "error",
         statusCode,
         message
     }
 
-    // console.log(errorResponse)
+    console.log(errorResponse)
     res.status(statusCode).json(errorResponse)
 }
 
