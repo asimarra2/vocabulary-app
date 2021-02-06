@@ -7,6 +7,7 @@ const vocabulary = new Schema(
         english: {
             type: String,
             required: true,
+            unique: true,
             lowercase: true,
             index: true,
         },
@@ -27,6 +28,6 @@ const vocabulary = new Schema(
 );
 
 // Plugins
-vocabulary.plugin(random);
+vocabulary.plugin(random)
 
 module.exports = mongoose.model("vocabulary", vocabulary)

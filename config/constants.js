@@ -8,5 +8,10 @@ module.exports = {
     },
     dbConfig: {
         DATABASE_URL: process.env.DATABASE_URL
+    },
+    models: {
+        vocabulary: {
+            WORD_EXIST: 'WORD_EXIST'
+        }
     }
 }

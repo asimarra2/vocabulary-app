@@ -1,9 +1,9 @@
-const { Router } = require('express');
+const { Router } = require('express')
 
 const vocabularyRoutes = require('../services/vocabulary/vocabularyRoutes')
 
 module.exports = () => {
-    const app = Router();
+    const app = Router()
 
     vocabularyRoutes(app)
 

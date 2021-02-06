@@ -1,4 +1,5 @@
 const { ErrorHandler } = require('../../helpers/error')
+const { models: { vocabulary: { WORD_EXIST } } } = require('../../config/constants')
 
 const handlers = ({ Model }) => {
     async function list ()  {
@@ -14,6 +15,11 @@ const handlers = ({ Model }) => {
     }
 
     async function add(vocabulary) {
+        let isExist = Model.exists({ english: vocabulary.english })
+        if(isExist) {
+            return WORD_EXIST
+        }
+
         let vc = new Model(vocabulary)
         return await vc.save()
     }
