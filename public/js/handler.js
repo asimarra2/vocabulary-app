@@ -1,7 +1,7 @@
 const URL_API = 'http://localhost:3000/api'
 
 $( document ).ready(function() {
-    getVocabulary()
+    getWords()
 
     const   btnMenu = document.querySelector('#menu'),
         menuContent = document.querySelector('.menu-content');
@@ -12,13 +12,36 @@ $( document ).ready(function() {
 
     $('#btnReload').on('click', function (e) {
         e.preventDefault()
-        getVocabulary()
+        getWords()
+    })
+
+    $('#modal1 #btnSave').on('click', function (e) {
+        e.preventDefault()
+
+        let english = $('#wordEnglish').val()
+        let spanish = $('#wordSpanish').val()
+        let pronunciation = $('#pronunciation').val()
+
+        if(wordEnglish==="" || wordSpanish==="" || pronunciation===""){
+            showMessage(`<strong>All fields are required!</strong>`)
+            return false;
+        }
+
+        saveWord({ english, spanish, pronunciation })
     })
 });
 
-function getVocabulary() {
+function showMessage(msg) {
+    $('#msgvalidation').html(msg).css("display", "");
+    setTimeout(function() {
+        $('#msgvalidation').html('').css("display", "none");
+    }, 2000 );
+}
+
+function getWords() {
     $('#wrapperCards').html('')
-    $('#loading').css("display", "");
+    $('#loading').css("display", "")
+    $('#msgvalidation').css("display", "none")
 
     fetch(`${URL_API}/vocabulary`)
         .then( (response) => response.json() )
@@ -26,6 +49,33 @@ function getVocabulary() {
             printHtml(data)
         })
         .catch((error) => console.error(error))
+}
+
+function saveWord(word) {
+    let options = {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(word)
+    }
+    fetch(`${URL_API}/vocabulary`, options)
+        .then( (response) => response.json() )
+        .then(data => {
+            if(data.vocabulary && data.vocabulary === "WORD_EXIST") {
+                showMessage(`<strong>The word already exists!</strong>`)
+                return false
+            }
+
+            showMessage(`<strong>The word was added successfully!</strong>`)
+
+            getWords()
+        })
+        .catch((error) => {
+            console.error(error)
+            showMessage(`<strong>An error has occurred, please try again later!</strong>`)
+        })
 }
 
 function printHtml(data) {

@@ -3,6 +3,10 @@
     <title>English Vocabulary!</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Slabo+27px|Yesteryear">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- jQuery Modal -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
@@ -22,17 +26,73 @@
 
     <div class="menu-content">
         <span class="menu-item" id="menu">
-            <img src="./svg/plus.svg" alt="Más">
+            <img src="./svg/plus.svg" alt="More...">
         </span>
         <a id="btnReload" href="#" class="menu-item">
-            <img src="./svg/reload.svg" alt="Facebook">
+            <img src="./svg/reload.svg" alt="Reload">
         </a>
-        <a href="#" target="_blank" class="menu-item">
-            <img src="./svg/add.svg" alt="Instagram">
+        <a href="#modal1" rel="modal:open" class="menu-item">
+            <img src="./svg/add.svg" alt="Add Word">
         </a>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="application/javascript"></script>
+    <!-- Modal HTML embedded directly into document -->
+    <div id="modal1" class="modal">
+        <h1>ADD WORD</h1>
+
+        <div class="row">&nbsp;</div>
+
+        <div id="msgvalidation" class="row">
+            
+        </div>
+
+        <div class="row">&nbsp;</div>
+
+        <div id="form">
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">Word English</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="wordEnglish" name="wordEnglish" placeholder="Word English..">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">Word Spanish</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="wordSpanish" name="wordSpanish" placeholder="Word Spanish..">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">Pronunciation</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="pronunciation" name="pronunciation" placeholder="Pronunciation..">
+                </div>
+            </div>
+
+            <div class="row">&nbsp;</div>
+
+            <div class="row">
+                <input id="btnSave" type="submit" value="Save">
+            </div>
+
+            <div class="row">&nbsp;</div>
+        </div>
+        <a href="#" rel="modal:close">Close</a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+    <!-- jQuery Modal -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
     <script src="js/handler.js" type="application/javascript"></script>
 </body>
 </html>
