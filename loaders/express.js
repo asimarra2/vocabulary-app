@@ -24,6 +24,8 @@ module.exports = ({ app }) => {
     // Load API routes
     app.use(API_PREFIX, routes());
 
+    app.use(express.static(('public')));
+
     app.use((err, req, res, next) => {
         handleError(err, res)
     })

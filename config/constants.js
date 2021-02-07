@@ -2,7 +2,7 @@ require('dotenv').config();
 
 module.exports = {
     app: {
-        PORT: parseInt(process.env.PORT) || 3001,
+        PORT: parseInt(process.env.PORT) || 3000,
         DEBUG: Boolean(process.env.DEBUG) || false,
         API_PREFIX: '/api'
     },
